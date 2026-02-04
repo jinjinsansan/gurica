@@ -10,7 +10,6 @@ const CATEGORIES = [
     description:
       "ポケモン・遊戯王・ワンピース・デジタルカードまで、様々なトレーディングカードを高価買取中。仕分け不要で異なる種類もまとめて送れます。",
     image: "/images/home/category-trading-cards.jpg",
-    gradient: "from-blue-500/20 to-purple-500/20",
     buttonText: "トレカを売る",
     href: "/assessment",
     highlights: ["高額PSA鑑定対応", "スピード査定"],
@@ -22,7 +21,6 @@ const CATEGORIES = [
     description:
       "NFTカードやデジタルコレクションの査定も対応。オンライン完結で安全・迅速にお取引いただけます。",
     image: "/images/home/category-digital-cards.jpg",
-    gradient: "from-purple-500/20 to-pink-500/20",
     buttonText: "デジタルを売る",
     href: "/assessment",
     highlights: ["ウォレット連携", "相場トラッキング"],
@@ -34,7 +32,6 @@ const CATEGORIES = [
     description:
       "大きくて重いPCでも宅配買取なら簡単発送。カメラ、スマホなど幅広く高価買取しています。",
     image: "/images/home/category-gadgets.jpg",
-    gradient: "from-orange-500/20 to-red-500/20",
     buttonText: "ガジェットを売る",
     href: "/assessment",
     highlights: ["専用梱包材", "法人一括対応"],
@@ -69,7 +66,6 @@ export function CategoryShowcase() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   priority={category.id === "trading-cards"}
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t ${category.gradient}`} aria-hidden />
               </div>
 
               {/* Content */}
@@ -95,7 +91,7 @@ export function CategoryShowcase() {
 
                 <Link
                   href={category.href}
-                  className="inline-flex items-center gap-2 text-blue-600 font-semibold text-base sm:text-lg hover:gap-4 transition-all"
+                  className="inline-flex items-center gap-2 text-rose-600 font-semibold text-base sm:text-lg hover:gap-4 transition-all"
                 >
                   {category.buttonText}
                   <ArrowRight className="w-5 h-5" />

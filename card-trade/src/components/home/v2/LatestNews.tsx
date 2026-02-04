@@ -41,21 +41,21 @@ export function LatestNews({ announcements }: Props) {
               <Link
                 key={announcement.id}
                 href={`/news/${announcement.id}`}
-                className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 rounded-2xl border border-gray-100 bg-gray-50 px-5 sm:px-6 py-5 hover:border-blue-200 hover:bg-white transition"
+                className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 rounded-2xl border border-gray-100 bg-gray-50 px-5 sm:px-6 py-5 hover:border-rose-200 hover:bg-white transition"
               >
                 <div className="flex items-center gap-3 text-gray-500 min-w-fit">
                   <Calendar className="w-5 h-5" />
                   <time className="text-xs sm:text-sm font-semibold">{formatDate(announcement.publishedAt)}</time>
                 </div>
                 <h3 className="flex-1 text-slate-900 font-semibold text-base sm:text-lg line-clamp-2 sm:line-clamp-1">{announcement.title}</h3>
-                <ArrowRight className="w-5 h-5 text-blue-600" />
+                <ArrowRight className="w-5 h-5 text-rose-600" />
               </Link>
             ))
           )}
         </div>
 
         <div className="mt-8 text-right">
-          <Link href="/news" className="text-blue-600 font-semibold text-sm sm:text-base">
+          <Link href="/news" className="text-rose-600 font-semibold text-sm sm:text-base">
             すべてのお知らせを見る →
           </Link>
         </div>

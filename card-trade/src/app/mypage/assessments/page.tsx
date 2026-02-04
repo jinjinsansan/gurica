@@ -15,7 +15,7 @@ const STATUS_LABELS: Record<string, string> = {
 
 const STATUS_CLASSES: Record<string, string> = {
   pending: "bg-slate-100 text-slate-600",
-  reviewing: "bg-blue-100 text-blue-700",
+  reviewing: "bg-rose-100 text-rose-700",
   quoted: "bg-emerald-100 text-emerald-700",
   accepted: "bg-purple-100 text-purple-700",
   completed: "bg-green-100 text-green-700",

@@ -18,14 +18,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-white/20 bg-white/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-[var(--text-primary)]">
-          <span
-            className="rounded-full px-2 py-1 text-xs font-semibold text-white"
-            style={{ backgroundImage: "var(--gradient-primary)" }}
-          >
-            {"{{SITE_NAME}}"}
-          </span>
-          <span className="hidden sm:inline">公式サイト</span>
+        <Link href="/" className="flex flex-col leading-tight">
+          <p className="text-2xl font-black tracking-tight text-slate-900">買い取りKK</p>
+          <span className="text-[0.6rem] uppercase tracking-[0.65em] text-rose-500">kaitori platform</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -33,14 +28,14 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--accent-blue)]"
+              className="text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--accent-primary)]"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/assessment"
-            className="cta-primary rounded-full px-6 py-2 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(74,108,247,0.2)] transition hover:-translate-y-0.5"
+            className="cta-primary rounded-full px-6 py-2 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(225,29,72,0.25)] transition hover:-translate-y-0.5"
           >
             無料査定はこちら
           </Link>

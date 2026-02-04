@@ -52,7 +52,7 @@ export function MediaColumns({ announcements }: Props) {
           <p className="section-title">MEDIA / COLUMN</p>
           <h2 className="section-heading">市場レポートとメディア掲載情報</h2>
           <p className="text-base sm:text-lg text-slate-600 max-w-3xl">
-            Guricaの取り組みは多数のメディアで紹介されています。相場解説や発送ノウハウなどのコラムも毎週更新中。
+            買い取りKKの取り組みは多数のメディアで紹介されています。相場解説や発送ノウハウなどのコラムも毎週更新中。
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export function MediaColumns({ announcements }: Props) {
                 <Link
                   key={announcement.id}
                   href={`/news/${announcement.id}`}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-2xl bg-white px-5 py-4 border border-gray-100 hover:border-blue-200 transition"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-2xl bg-white px-5 py-4 border border-gray-100 hover:border-rose-200 transition"
                 >
                   <div>
                     <p className="text-xs uppercase tracking-[0.3em] text-gray-500">MEDIA</p>
@@ -88,7 +88,7 @@ export function MediaColumns({ announcements }: Props) {
                 </Link>
               ))}
             </div>
-            <Link href="/news" className="text-blue-600 font-semibold">
+            <Link href="/news" className="text-rose-600 font-semibold">
               メディア掲載一覧を見る →
             </Link>
           </div>
@@ -100,7 +100,7 @@ export function MediaColumns({ announcements }: Props) {
             </div>
             <div className="space-y-4">
               {COLUMN_POSTS.map((post) => (
-                <div key={post.id} className="border border-gray-100 rounded-2xl p-4 sm:p-5 hover:border-blue-200 transition">
+                <div key={post.id} className="border border-gray-100 rounded-2xl p-4 sm:p-5 hover:border-rose-200 transition">
                   <div className="flex flex-wrap items-center gap-2 text-[0.65rem] sm:text-xs uppercase tracking-[0.3em] text-gray-500">
                     <span>{post.category}</span>
                     <span className="h-0.5 w-6 bg-gray-300" />
@@ -111,7 +111,7 @@ export function MediaColumns({ announcements }: Props) {
               ))}
             </div>
             <p className="text-sm text-slate-500">メディア掲載やコラムの寄稿依頼はこちらからご相談ください。</p>
-            <Link href="/contact" className="self-start rounded-full border border-gray-200 px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-slate-700">
+            <Link href="/contact" className="self-start rounded-full border border-gray-200 px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-rose-600">
               取材・寄稿のご相談 →
             </Link>
           </div>

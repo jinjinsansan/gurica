@@ -9,7 +9,7 @@ if (!apiKey) {
 export const resend = apiKey ? new Resend(apiKey) : null;
 
 export const DEFAULT_FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? "no-reply@gurica.example.com";
+  process.env.RESEND_FROM_EMAIL ?? "no-reply@kaitorikk.example.com";
 
 export const ADMIN_NOTIFICATION_EMAIL =
-  process.env.ADMIN_NOTIFICATION_EMAIL ?? "admin@gurica.example.com";
+  process.env.ADMIN_NOTIFICATION_EMAIL ?? "admin@kaitorikk.example.com";
