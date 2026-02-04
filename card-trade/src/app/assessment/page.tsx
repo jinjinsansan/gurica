@@ -1,35 +1,57 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+
+import { AssessmentInfo } from "@/components/assessment/AssessmentInfo";
+import { AssessmentForm } from "@/components/assessment/AssessmentForm";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "オンライン査定 | {{SITE_NAME}}",
-  description: "オンライン査定フォームは近日公開予定です。準備が整い次第お知らせいたします。",
+  description: "写真を送るだけで完結する無料オンライン査定フォームです。カテゴリ選択と画像アップロードに対応しています。",
   openGraph: {
     title: "オンライン査定 | {{SITE_NAME}}",
-    description: "オンライン査定フォームは近日公開予定です。",
+    description: "写真を送るだけで完結する無料オンライン査定フォームです。",
   },
 };
 
-export default function AssessmentComingSoon() {
+export default async function AssessmentPage() {
+  const supabase = await createClient();
+  const [{ data: categories }, userResult] = await Promise.all([
+    supabase.from("categories").select("id,name,slug").order("display_order", { ascending: true }),
+    supabase.auth.getUser(),
+  ]);
+
+  let defaultName: string | null = null;
+  let defaultEmail: string | null = null;
+  let defaultPhone: string | null = null;
+
+  if (userResult.data.user) {
+    defaultEmail = userResult.data.user.email ?? null;
+    const profile = await supabase
+      .from("profiles")
+      .select("full_name, phone")
+      .eq("id", userResult.data.user.id)
+      .single();
+    defaultName = profile.data?.full_name ?? null;
+    defaultPhone = profile.data?.phone ?? null;
+  }
+
+  const categoryList = (categories ?? []) as { id: string; name: string; slug: string }[];
+
   return (
-    <section className="px-4 py-20">
-      <div className="mx-auto max-w-3xl rounded-[32px] border border-slate-100 bg-white p-10 text-center shadow-[0_20px_45px_rgba(26,29,46,0.08)]">
-        <p className="text-xs uppercase tracking-[0.35em] text-[var(--text-light)]">Coming Soon</p>
-        <h1 className="mt-4 text-4xl text-[var(--text-primary)]">オンライン査定フォームを準備中です</h1>
-        <p className="mt-4 text-sm text-[var(--text-secondary)]">
-          ただいまオンライン査定フォームの公開準備を進めています。正式リリースまでは、お問い合わせフォームまたは買取の流れページをご利用ください。
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <Link href="/contact" className="cta-primary rounded-full px-6 py-3 text-sm font-semibold text-white">
-            お問い合わせへ
-          </Link>
-          <Link
-            href="/prices"
-            className="rounded-full border border-[var(--accent-blue)] px-6 py-3 text-sm font-semibold text-[var(--accent-blue)]"
-          >
-            最新の買取価格を見る
-          </Link>
-        </div>
+    <section className="px-4 py-16">
+      <div className="mx-auto mb-10 max-w-4xl text-center">
+        <p className="text-xs uppercase tracking-[0.35em] text-[var(--text-light)]">Assessment</p>
+        <h1 className="mt-3 text-3xl text-[var(--text-primary)]">無料オンライン査定</h1>
+        <p className="mt-2 text-sm text-[var(--text-secondary)]">写真を添付するだけで査定依頼が完了します。最短即日で回答いたします。</p>
+      </div>
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+        <AssessmentInfo />
+        <AssessmentForm
+          categories={categoryList}
+          defaultName={defaultName}
+          defaultEmail={defaultEmail}
+          defaultPhone={defaultPhone}
+        />
       </div>
     </section>
   );

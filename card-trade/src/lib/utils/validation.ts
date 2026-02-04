@@ -55,44 +55,47 @@ export const assessmentStatusOptions = [
   "cancelled",
 ] as const satisfies Readonly<AssessmentStatus[]>;
 
-const MAX_IMAGES = 5;
-const fileSchema =
+const FILE_SCHEMA =
   typeof File === "undefined" ? z.any() : z.instanceof(File);
 
-export const assessmentSchema = z.object({
-  name: z.string().min(1, "お名前を入力してください"),
+export const assessmentFormSchema = z.object({
+  name: z.string().min(1, "氏名を入力してください").max(50),
   email: z.string().email("正しいメールアドレスを入力してください"),
   phone: z
     .string()
     .trim()
     .optional()
-    .transform((value) => value || undefined),
-  category: z.enum(categoryOptions),
-  cardName: z.string().min(1, "カード名を入力してください"),
-  rarity: z.string().optional(),
+    .transform((value) => (value ? value : undefined)),
+  categoryId: z.string().uuid("カテゴリを選択してください"),
+  cardDetail: z
+    .string()
+    .min(1, "商品の詳細を入力してください")
+    .max(2000, "2000文字以内で入力してください"),
   condition: z.enum(conditionOptions),
-  quantity: z
-    .coerce.number()
-    .int()
-    .min(1, "枚数は1枚以上で入力してください"),
-  notes: z.string().max(1000, "備考は1000文字以内で入力してください").optional(),
+  notes: z
+    .string()
+    .max(1000, "備考は1000文字以内で入力してください")
+    .optional(),
   images: z
-    .array(fileSchema)
-    .max(MAX_IMAGES, `画像は最大${MAX_IMAGES}枚までアップロードできます`)
+    .array(FILE_SCHEMA)
+    .max(5, "画像は最大5枚までアップロードできます")
     .optional(),
 });
 
-export type AssessmentFormValues = z.infer<typeof assessmentSchema>;
+type AssessmentSchemaInfer = z.infer<typeof assessmentFormSchema>;
 
-export const contactSchema = z.object({
-  name: z.string().min(1, "お名前を入力してください"),
+export type AssessmentFormValues = Omit<AssessmentSchemaInfer, "phone"> & {
+  phone?: string;
+};
+
+export const contactFormSchema = z.object({
+  name: z.string().min(1, "氏名を入力してください").max(50),
   email: z.string().email("正しいメールアドレスを入力してください"),
-  subject: z.string().min(1, "件名を入力してください"),
   inquiryType: z.enum(inquiryTypeOptions),
-  message: z.string().min(20, "20文字以上で入力してください"),
+  message: z.string().min(10, "内容を入力してください").max(2000),
 });
 
-export type ContactFormValues = z.infer<typeof contactSchema>;
+export type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export const orderSchema = z.object({
   name: z.string().min(1, "お名前を入力してください"),
