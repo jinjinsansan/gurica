@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #fafbff;
+  --bg-card: #ffffff;
+  --bg-accent: #f0f4ff;
+  --text-primary: #1a1d2e;
+  --text-secondary: #5a5f7a;
+  --text-light: #8a8fa8;
+  --accent-blue: #4a6cf7;
+  --accent-purple: #8b5cf6;
+  --accent-orange: #f59e0b;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-pink: #ec4899;
+  --gradient-primary: linear-gradient(135deg, #4a6cf7, #8b5cf6);
+  --gradient-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  --gradient-cool: linear-gradient(135deg, #10b981, #4a6cf7);
+  --shadow-card: 0 15px 40px rgba(74, 108, 247, 0.12);
+  --shadow-soft: 0 6px 24px rgba(26, 29, 46, 0.08);
+  --radius-pill: 999px;
+  --radius-card: 20px;
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-card: var(--bg-card);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-tech: var(--font-tech);
+  --radius-card: var(--radius-card);
+  --shadow-card: var(--shadow-card);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(74, 108, 247, 0.12), transparent),
+    var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), "Zen Kaku Gothic New", system-ui, -apple-system,
+    BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: rgba(74, 108, 247, 0.2);
+  color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), "Dela Gothic One", sans-serif;
+  color: var(--text-primary);
+}
+
+p,
+span,
+li {
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-purple);
+}
+
+.pill {
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(74, 108, 247, 0.1);
+  color: var(--accent-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(74, 108, 247, 0.2);
+}
+
+.card-surface {
+  border-radius: var(--radius-card);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(74, 108, 247, 0.08);
+}
+
+button,
+.cta {
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 2.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-primary {
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(74, 108, 247, 0.25);
+}
+
+.cta-primary:hover {
+  transform: translateY(-2px);
+}
