@@ -4,6 +4,7 @@ import { CategoryShowcase } from "@/components/home/v2/CategoryShowcase";
 import { MarketHighlights } from "@/components/home/v2/MarketHighlights";
 import { TrustSignals } from "@/components/home/v2/TrustSignals";
 import { LatestNews } from "@/components/home/v2/LatestNews";
+import { MediaColumns } from "@/components/home/v2/MediaColumns";
 import { createClient } from "@/lib/supabase/server";
 
 type DbProduct = {
@@ -82,6 +83,7 @@ export default async function HomePage() {
       <ServiceGrid />
       <CategoryShowcase />
       <MarketHighlights newArrivals={newArrivals} trending={trending} />
+      <MediaColumns announcements={announcements} />
       <TrustSignals />
       <LatestNews announcements={announcements} />
     </>

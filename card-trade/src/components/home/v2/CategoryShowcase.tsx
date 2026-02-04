@@ -12,6 +12,7 @@ const CATEGORIES = [
     gradient: "from-blue-500/20 to-purple-500/20",
     buttonText: "トレカを売る",
     href: "/assessment",
+    highlights: ["高額PSA鑑定対応", "スピード査定"],
   },
   {
     id: "digital-cards",
@@ -23,6 +24,7 @@ const CATEGORIES = [
     gradient: "from-purple-500/20 to-pink-500/20",
     buttonText: "デジタルを売る",
     href: "/assessment",
+    highlights: ["ウォレット連携", "相場トラッキング"],
   },
   {
     id: "gadgets",
@@ -34,6 +36,7 @@ const CATEGORIES = [
     gradient: "from-orange-500/20 to-red-500/20",
     buttonText: "ガジェットを売る",
     href: "/assessment",
+    highlights: ["専用梱包材", "法人一括対応"],
   },
 ];
 
@@ -41,9 +44,12 @@ export function CategoryShowcase() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div className="flex flex-col gap-4 mb-16">
           <p className="section-title">CATEGORY</p>
-          <h2 className="section-heading">売りたいカテゴリーを選択</h2>
+          <h2 className="section-heading">カテゴリ別に最適な査定プランをご用意</h2>
+          <p className="text-lg text-slate-600 max-w-3xl">
+            カード・デジタル・デバイスまで、専門知識を持つチームがジャンルごとの価値基準で鑑定します。
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -66,6 +72,14 @@ export function CategoryShowcase() {
                   </p>
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">{category.title}</h3>
                   <p className="text-base text-slate-600 leading-relaxed">{category.description}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {category.highlights?.map((highlight) => (
+                    <span key={highlight} className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 bg-gray-100 rounded-full px-4 py-1">
+                      {highlight}
+                    </span>
+                  ))}
                 </div>
 
                 <Link

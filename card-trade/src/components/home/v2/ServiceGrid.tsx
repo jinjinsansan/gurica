@@ -14,7 +14,7 @@ const SERVICES = [
   {
     icon: ClipboardCheck,
     label: "オンライン査定",
-    description: "24時間受付",
+    description: "スマホで撮影して送るだけ。AI補正で見やすく査定チームへ共有。",
     href: "/assessment",
     color: "text-blue-600",
     bg: "bg-blue-50",
@@ -22,7 +22,7 @@ const SERVICES = [
   {
     icon: ShoppingCart,
     label: "ショップ",
-    description: "カード通販",
+    description: "鑑定済みカードをオンラインで販売。ポケカからデジタルまで網羅。",
     href: "/shop",
     color: "text-purple-600",
     bg: "bg-purple-50",
@@ -30,7 +30,7 @@ const SERVICES = [
   {
     icon: TrendingUp,
     label: "買取価格",
-    description: "相場をチェック",
+    description: "リアルタイムの市場データを基に相場を公開。上昇率もチェック可能。",
     href: "/prices",
     color: "text-orange-600",
     bg: "bg-orange-50",
@@ -38,7 +38,7 @@ const SERVICES = [
   {
     icon: ArrowRightLeft,
     label: "買取の流れ",
-    description: "4ステップ",
+    description: "宅配・店頭・法人出張の3パターン。梱包キットも無料で提供。",
     href: "/flow",
     color: "text-green-600",
     bg: "bg-green-50",
@@ -46,7 +46,7 @@ const SERVICES = [
   {
     icon: Building2,
     label: "会社概要",
-    description: "運営情報",
+    description: "グリカ株式会社の企業情報、沿革、メンバー紹介はこちら。",
     href: "/company",
     color: "text-slate-600",
     bg: "bg-slate-50",
@@ -54,7 +54,7 @@ const SERVICES = [
   {
     icon: Newspaper,
     label: "お知らせ",
-    description: "最新情報",
+    description: "最新のキャンペーン・メディア掲載・営業時間の更新情報を配信。",
     href: "/news",
     color: "text-pink-600",
     bg: "bg-pink-50",
@@ -62,7 +62,7 @@ const SERVICES = [
   {
     icon: User,
     label: "マイページ",
-    description: "査定履歴",
+    description: "査定履歴や入金状況、本人確認情報をまとめて管理できます。",
     href: "/mypage/assessments",
     color: "text-indigo-600",
     bg: "bg-indigo-50",
@@ -70,7 +70,7 @@ const SERVICES = [
   {
     icon: HelpCircle,
     label: "よくある質問",
-    description: "FAQ",
+    description: "梱包方法や入金スケジュールなど、よくある質問を掲載。",
     href: "/contact",
     color: "text-cyan-600",
     bg: "bg-cyan-50",
@@ -79,26 +79,42 @@ const SERVICES = [
 
 export function ServiceGrid() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <p className="section-title">SERVICE</p>
-          <h2 className="section-heading">サービス一覧</h2>
+        <div className="flex flex-col gap-6 mb-16">
+          <p className="section-title text-left">SERVICE MENU</p>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div>
+              <h2 className="section-heading">取引に必要な機能をワンストップで</h2>
+              <p className="text-lg text-slate-600 max-w-2xl">
+                査定・買取・販売・サポートまで、カードのライフサイクルを支える機能を提供します。
+              </p>
+            </div>
+            <Link href="/contact" className="inline-flex items-center gap-2 text-blue-600 font-semibold text-lg">
+              サービス資料を請求する
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <Link
                 key={service.href}
                 href={service.href}
-                className="bg-white rounded-2xl p-8 text-center group hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
+                className="group rounded-3xl border border-gray-200 bg-white p-6 text-left hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl transition-all"
               >
-                <div className={`${service.bg} w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className={`w-10 h-10 ${service.color}`} />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`${service.bg} w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className={`w-8 h-8 ${service.color}`} />
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-[0.3em] text-gray-500">SERVICE</p>
+                    <h3 className="text-2xl font-bold text-slate-900">{service.label}</h3>
+                  </div>
                 </div>
-                <h3 className="font-bold text-xl mb-2 text-slate-900">{service.label}</h3>
                 <p className="text-base text-slate-600">{service.description}</p>
               </Link>
             );
