@@ -94,33 +94,35 @@ function AnimatedNumber({
 
 export function TrustSignals() {
   return (
-    <section className="section-container bg-gradient-to-br from-blue-50 to-purple-50">
-      <div className="text-center mb-12">
-        <p className="section-title">TRUST</p>
-        <h2 className="section-heading">安心の実績</h2>
-        <p className="section-description">多くのお客様にご利用いただいています</p>
-      </div>
+    <section className="py-24 bg-white border-t border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <p className="section-title">TRUST</p>
+          <h2 className="section-heading">安心の実績</h2>
+          <p className="text-xl text-gray-600 mt-4">多くのお客様にご利用いただいています</p>
+        </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {STATS.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <div key={stat.label} className="card-v2 p-6 text-center">
-              <div className={`${stat.bg} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-                <Icon className={`w-8 h-8 ${stat.color}`} />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+          {STATS.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div key={stat.label} className="bg-gray-50 rounded-3xl p-10 text-center hover:bg-gray-100 transition-colors duration-300">
+                <div className={`${stat.bg} w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-6`}>
+                  <Icon className={`w-12 h-12 ${stat.color}`} />
+                </div>
+                <div className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-3">
+                  <AnimatedNumber
+                    value={stat.value}
+                    format={stat.format}
+                    decimals={stat.decimals}
+                  />
+                  <span className="text-3xl">{stat.suffix}</span>
+                </div>
+                <p className="text-base font-semibold text-slate-600">{stat.label}</p>
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
-                <AnimatedNumber
-                  value={stat.value}
-                  format={stat.format}
-                  decimals={stat.decimals}
-                />
-                <span className="text-2xl">{stat.suffix}</span>
-              </div>
-              <p className="text-sm text-slate-600">{stat.label}</p>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </section>
   );

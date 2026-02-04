@@ -27,37 +27,38 @@ export function MarketHighlights({ newArrivals, trending }: Props) {
   const products = activeTab === "new" ? newArrivals : trending;
 
   return (
-    <section className="section-container bg-white">
-      <div className="text-center mb-8">
-        <p className="section-title">MARKET</p>
-        <h2 className="section-heading">注目商品</h2>
-      </div>
+    <section className="py-24 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <p className="section-title">MARKET</p>
+          <h2 className="section-heading">注目商品</h2>
+        </div>
 
-      {/* Tabs */}
-      <div className="flex justify-center gap-4 mb-8">
-        <button
-          onClick={() => setActiveTab("new")}
-          className={`px-6 py-3 rounded-full font-semibold transition flex items-center gap-2 ${
-            activeTab === "new"
-              ? "bg-blue-600 text-white shadow-lg"
-              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-          }`}
-        >
-          <Sparkles className="w-5 h-5" />
-          新着商品
-        </button>
-        <button
-          onClick={() => setActiveTab("trending")}
-          className={`px-6 py-3 rounded-full font-semibold transition flex items-center gap-2 ${
-            activeTab === "trending"
-              ? "bg-orange-600 text-white shadow-lg"
-              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-          }`}
-        >
-          <TrendingUp className="w-5 h-5" />
-          高騰ランキング
-        </button>
-      </div>
+        {/* Tabs */}
+        <div className="flex justify-center gap-6 mb-16">
+          <button
+            onClick={() => setActiveTab("new")}
+            className={`px-10 py-4 rounded-2xl font-bold text-lg transition-all flex items-center gap-3 ${
+              activeTab === "new"
+                ? "bg-blue-600 text-white shadow-xl scale-105"
+                : "bg-white text-slate-600 hover:bg-slate-50 shadow-md border border-gray-200"
+            }`}
+          >
+            <Sparkles className="w-6 h-6" />
+            新着商品
+          </button>
+          <button
+            onClick={() => setActiveTab("trending")}
+            className={`px-10 py-4 rounded-2xl font-bold text-lg transition-all flex items-center gap-3 ${
+              activeTab === "trending"
+                ? "bg-orange-600 text-white shadow-xl scale-105"
+                : "bg-white text-slate-600 hover:bg-slate-50 shadow-md border border-gray-200"
+            }`}
+          >
+            <TrendingUp className="w-6 h-6" />
+            高騰ランキング
+          </button>
+        </div>
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -88,6 +89,7 @@ export function MarketHighlights({ newArrivals, trending }: Props) {
           <p>現在表示できる商品がありません</p>
         </div>
       )}
+      </div>
     </section>
   );
 }

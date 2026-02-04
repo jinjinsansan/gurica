@@ -79,29 +79,31 @@ const SERVICES = [
 
 export function ServiceGrid() {
   return (
-    <section className="section-container bg-white">
-      <div className="text-center mb-12">
-        <p className="section-title">SERVICE</p>
-        <h2 className="section-heading">サービス一覧</h2>
-      </div>
+    <section className="py-24 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <p className="section-title">SERVICE</p>
+          <h2 className="section-heading">サービス一覧</h2>
+        </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {SERVICES.map((service) => {
-          const Icon = service.icon;
-          return (
-            <Link
-              key={service.href}
-              href={service.href}
-              className="card-v2 p-6 text-center group"
-            >
-              <div className={`${service.bg} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition`}>
-                <Icon className={`w-8 h-8 ${service.color}`} />
-              </div>
-              <h3 className="font-semibold text-lg mb-1 text-slate-900">{service.label}</h3>
-              <p className="text-sm text-slate-500">{service.description}</p>
-            </Link>
-          );
-        })}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {SERVICES.map((service) => {
+            const Icon = service.icon;
+            return (
+              <Link
+                key={service.href}
+                href={service.href}
+                className="bg-white rounded-2xl p-8 text-center group hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
+              >
+                <div className={`${service.bg} w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon className={`w-10 h-10 ${service.color}`} />
+                </div>
+                <h3 className="font-bold text-xl mb-2 text-slate-900">{service.label}</h3>
+                <p className="text-base text-slate-600">{service.description}</p>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
