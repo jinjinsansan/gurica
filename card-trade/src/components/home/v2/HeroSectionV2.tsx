@@ -10,17 +10,26 @@ const HERO_SLIDES = [
   {
     alt: "トレーディングカード買取",
     image: "/images/home/hero-trading-cards.jpg",
-    overlay: "from-blue-500/80 via-transparent to-purple-500/70",
+    overlay: "from-blue-600/70 via-transparent to-purple-600/60",
+    tag: "POKECA",
+    title: "プレミアムカード即日査定",
+    description: "PSA10 データと連動した AI スコアリング",
   },
   {
     alt: "デジタルカード査定",
     image: "/images/home/hero-trading-cards.jpg",
-    overlay: "from-purple-500/80 via-transparent to-pink-500/70",
+    overlay: "from-purple-600/70 via-transparent to-pink-600/60",
+    tag: "NFT",
+    title: "ウォレット連携でワンクリック",
+    description: "真贋チェック + 相場自動取得",
   },
   {
     alt: "高価買取実施中",
     image: "/images/home/hero-trading-cards.jpg",
-    overlay: "from-pink-500/80 via-transparent to-orange-500/70",
+    overlay: "from-rose-500/70 via-transparent to-orange-500/60",
+    tag: "MARKET",
+    title: "週次レポート公開中",
+    description: "取引前に必要な指数をワンページで",
   },
 ];
 
@@ -67,14 +76,15 @@ export function HeroSectionV2() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="relative bg-white">
-      <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-blue-50/70 to-transparent pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center py-16 sm:py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-white">
+      <div className="absolute inset-x-0 -top-16 h-72 bg-gradient-to-b from-blue-50 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute -right-32 top-0 w-72 h-72 bg-gradient-to-br from-blue-200/40 to-purple-100/60 blur-3xl" aria-hidden />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-20 items-center py-16 sm:py-20 lg:py-28">
           {/* Left: Text Content */}
-          <div className="space-y-10">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white/80 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-500">
+          <div className="space-y-8">
+            <div className="space-y-5">
+              <div className="inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white/90 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-500">
                 CARD TRADING PLATFORM
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.1] sm:leading-[1.05] tracking-tight text-slate-900">
@@ -93,7 +103,9 @@ export function HeroSectionV2() {
             <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
               {HERO_FEATURES.map((feature) => (
                 <div key={feature} className="flex items-center gap-3 text-base sm:text-lg text-slate-700">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                    <CheckCircle2 className="w-4 h-4" />
+                  </span>
                   {feature}
                 </div>
               ))}
@@ -132,17 +144,17 @@ export function HeroSectionV2() {
                         sizes="(max-width: 1024px) 100vw, 540px"
                       />
                       <div className={`absolute inset-0 bg-gradient-to-br ${slide.overlay}`} aria-hidden />
-                      <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 text-white">
-                        <div className="space-y-4 sm:space-y-6 text-white">
-                          <p className="text-xs sm:text-sm uppercase tracking-[0.4em] text-white/70">REALTIME DATA</p>
-                          <p className="text-2xl sm:text-3xl font-bold leading-tight drop-shadow-lg">
-                            市場データと連動した<br />
-                            査定アルゴリズム
-                          </p>
+                      <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8 text-white">
+                        <div className="space-y-3">
+                          <span className="inline-flex items-center gap-2 text-[0.65rem] sm:text-xs uppercase tracking-[0.4em] text-white/70">
+                            {slide.tag}
+                          </span>
+                          <p className="text-2xl sm:text-3xl font-bold leading-tight drop-shadow-lg">{slide.title}</p>
+                          <p className="text-sm sm:text-base text-white/80">{slide.description}</p>
                         </div>
                         <div className="grid grid-cols-2 gap-3 sm:gap-4">
                           {["ポケカ", "デジタル"].map((label) => (
-                            <div key={label} className="bg-white/15 backdrop-blur border border-white/30 rounded-2xl p-3 sm:p-4 text-white">
+                            <div key={label} className="bg-white/15 backdrop-blur border border-white/30 rounded-2xl p-3 sm:p-4">
                               <p className="text-xs sm:text-sm opacity-80">{label}</p>
                               <p className="text-lg sm:text-2xl font-bold">高額買取中</p>
                             </div>
@@ -154,8 +166,6 @@ export function HeroSectionV2() {
                 ))}
               </div>
             </div>
-
-            {/* Carousel Controls */}
             <div className="hidden sm:flex">
               <button
                 onClick={scrollPrev}
@@ -173,18 +183,35 @@ export function HeroSectionV2() {
               </button>
             </div>
 
-            {/* Dots */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
-              {HERO_SLIDES.map((_, index) => (
+            <div className="absolute -bottom-14 right-0 flex items-center gap-3">
+              <div className="flex gap-2">
+                {HERO_SLIDES.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`h-1 rounded-full transition-all ${
+                      index === selectedIndex ? "bg-blue-600 w-10" : "bg-gray-300 w-4"
+                    }`}
+                    onClick={() => emblaApi?.scrollTo(index)}
+                    aria-label={`スライド ${index + 1}`}
+                  />
+                ))}
+              </div>
+              <div className="hidden sm:flex items-center gap-2 rounded-full border border-gray-200 bg-white px-2 py-1 shadow-md">
                 <button
-                  key={index}
-                  className={`h-3 rounded-full transition-all ${
-                    index === selectedIndex ? "bg-blue-600 w-12" : "bg-gray-300 w-3"
-                  }`}
-                  onClick={() => emblaApi?.scrollTo(index)}
-                  aria-label={`スライド ${index + 1}`}
-                />
-              ))}
+                  onClick={scrollPrev}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-100"
+                  aria-label="前へ"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={scrollNext}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-gray-100"
+                  aria-label="次へ"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
