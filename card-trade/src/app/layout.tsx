@@ -1,31 +1,15 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import {
-  Dela_Gothic_One,
-  Orbitron,
-  Zen_Kaku_Gothic_New,
-} from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 
 import "@/styles/globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const displayFont = Dela_Gothic_One({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const bodyFont = Zen_Kaku_Gothic_New({
+const notoSans = Noto_Sans_JP({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
-  variable: "--font-body",
-});
-
-const techFont = Orbitron({
-  weight: ["500", "700"],
-  subsets: ["latin"],
-  variable: "--font-tech",
+  variable: "--font-sans",
 });
 
 const fallbackSiteUrl = "http://localhost:3000";
@@ -72,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${displayFont.variable} ${bodyFont.variable} ${techFont.variable} min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased`}
+        className={`${notoSans.variable} min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased`}
       >
         <Header />
         <main>{children}</main>

@@ -27,9 +27,9 @@
   --color-foreground: var(--text-primary);
   --color-muted: var(--text-secondary);
   --color-card: var(--bg-card);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
-  --font-tech: var(--font-tech);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-sans);
+  --font-tech: var(--font-sans);
   --radius-card: var(--radius-card);
   --shadow-card: var(--shadow-card);
 }
@@ -44,7 +44,7 @@ body {
   background: radial-gradient(circle at top, rgba(74, 108, 247, 0.12), transparent),
     var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-body), "Zen Kaku Gothic New", system-ui, -apple-system,
+  font-family: var(--font-sans), "Noto Sans JP", system-ui, -apple-system,
     BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
   letter-spacing: 0.01em;
 }
@@ -58,7 +58,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-display), "Dela Gothic One", sans-serif;
+  font-family: var(--font-sans), "Noto Sans JP", sans-serif;
   color: var(--text-primary);
 }
 
@@ -98,11 +98,15 @@ a:hover {
 
 button,
 .cta {
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   font-weight: 600;
   border-radius: var(--radius-pill);
   padding: 0.85rem 2.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.font-tech {
+  font-family: var(--font-sans), "Noto Sans JP", sans-serif;
 }
 
 .cta-primary {
