@@ -3,12 +3,25 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
 
 const HERO_SLIDES = [
-  { alt: "トレーディングカード買取", gradient: "from-blue-400 to-purple-500" },
-  { alt: "デジタルカード査定", gradient: "from-purple-400 to-pink-500" },
-  { alt: "高価買取実施中", gradient: "from-pink-400 to-orange-500" },
+  {
+    alt: "トレーディングカード買取",
+    image: "/images/home/hero-trading-cards.jpg",
+    overlay: "from-blue-500/80 via-transparent to-purple-500/70",
+  },
+  {
+    alt: "デジタルカード査定",
+    image: "/images/home/hero-trading-cards.jpg",
+    overlay: "from-purple-500/80 via-transparent to-pink-500/70",
+  },
+  {
+    alt: "高価買取実施中",
+    image: "/images/home/hero-trading-cards.jpg",
+    overlay: "from-pink-500/80 via-transparent to-orange-500/70",
+  },
 ];
 
 const HERO_FEATURES = [
@@ -109,8 +122,17 @@ export function HeroSectionV2() {
               <div className="flex">
                 {HERO_SLIDES.map((slide, index) => (
                   <div key={index} className="flex-[0_0_100%] min-w-0">
-                    <div className={`relative aspect-[5/4] bg-gradient-to-br ${slide.gradient}`}>
-                      <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10">
+                    <div className="relative aspect-[5/4]">
+                      <Image
+                        src={slide.image}
+                        alt={slide.alt}
+                        fill
+                        priority={index === 0}
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 540px"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${slide.overlay}`} aria-hidden />
+                      <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 text-white">
                         <div className="space-y-4 sm:space-y-6 text-white">
                           <p className="text-xs sm:text-sm uppercase tracking-[0.4em] text-white/70">REALTIME DATA</p>
                           <p className="text-2xl sm:text-3xl font-bold leading-tight drop-shadow-lg">
