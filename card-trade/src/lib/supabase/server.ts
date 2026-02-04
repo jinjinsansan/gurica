@@ -16,14 +16,8 @@ export async function createClient() {
       getAll() {
         return cookieStore.getAll();
       },
-      setAll(cookiesToSet) {
-        try {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            cookieStore.set(name, value, options);
-          });
-        } catch (error) {
-          console.error("Supabaseクッキーの設定に失敗しました", error);
-        }
+      setAll() {
+        // Server Components側ではクッキーを書き換えない
       },
     },
   });

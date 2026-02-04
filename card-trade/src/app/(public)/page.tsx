@@ -1,24 +1,83 @@
-export default function Home() {
+import { HeroSection } from "@/components/home/HeroSection";
+import { CategoryCards } from "@/components/home/CategoryCards";
+import { FeaturesBar } from "@/components/home/FeaturesBar";
+import { FlowPreview } from "@/components/home/FlowPreview";
+import { NewArrivals } from "@/components/home/NewArrivals";
+import { AnnouncementsSection } from "@/components/home/AnnouncementsSection";
+import { createClient } from "@/lib/supabase/server";
+
+type DbProduct = {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  rarity: string | null;
+  badge: string | null;
+  series: string | null;
+  category_id: string;
+};
+
+type DbAnnouncement = {
+  id: string;
+  title: string;
+  published_at: string | null;
+};
+
+type DbCategory = {
+  id: string;
+  name: string;
+};
+
+export const revalidate = 600;
+
+export default async function HomePage() {
+  const supabase = await createClient();
+  const [{ data: productData }, { data: announcementData }, { data: categoriesData }] =
+    await Promise.all([
+      supabase
+        .from("products")
+        .select("id,name,slug,price,rarity,badge,series,category_id")
+        .eq("status", "active")
+        .order("created_at", { ascending: false })
+        .limit(8),
+      supabase
+        .from("announcements")
+        .select("id,title,published_at")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false })
+        .limit(3),
+      supabase.from("categories").select("id,name"),
+    ]);
+
+  const categoryEntries: [string, string][] =
+    (categoriesData as DbCategory[] | null)?.map((c) => [c.id, c.name]) ?? [];
+  const categoryMap = new Map<string, string>(categoryEntries);
+
+  const products = (productData as DbProduct[] | null)?.map((product) => ({
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    price: product.price,
+    rarity: product.rarity,
+    badge: product.badge,
+    series: product.series,
+    categoryLabel: categoryMap.get(product.category_id) ?? "カード",
+  })) ?? [];
+
+  const announcements = (announcementData as DbAnnouncement[] | null)?.map((announcement) => ({
+    id: announcement.id,
+    title: announcement.title,
+    publishedAt: announcement.published_at,
+  })) ?? [];
+
   return (
-    <main className="relative overflow-hidden bg-[var(--bg-primary)] px-6 py-24">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.5em] text-[var(--accent-blue)]">
-          Phase 1
-        </p>
-        <h1 className="text-balance text-4xl font-bold text-[var(--text-primary)] sm:text-5xl">
-          {"{{SITE_NAME}}"} の開発環境を初期化しました
-        </h1>
-        <p className="max-w-3xl text-lg leading-relaxed text-[var(--text-secondary)]">
-          Next.js 14 / Supabase / Tailwind CSS をベースに、計画書に沿った段階的な実装を進めます。
-          今後は公開ページ、オンライン査定、EC、管理画面の順で機能を拡張していきます。
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 text-sm font-semibold">
-          <span className="pill">Next.js App Router</span>
-          <span className="pill">Supabase Auth / DB</span>
-          <span className="pill">Tailwind + カスタムデザインシステム</span>
-        </div>
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[var(--gradient-primary)] opacity-30 blur-3xl" />
-    </main>
+    <>
+      <HeroSection />
+      <CategoryCards />
+      <FeaturesBar />
+      <FlowPreview />
+      <NewArrivals products={products} />
+      <AnnouncementsSection announcements={announcements} />
+    </>
   );
 }

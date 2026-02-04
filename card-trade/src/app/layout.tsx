@@ -7,6 +7,8 @@ import {
 } from "next/font/google";
 
 import "@/styles/globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const displayFont = Dela_Gothic_One({
   weight: "400",
@@ -72,7 +74,9 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${techFont.variable} min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased`}
       >
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
