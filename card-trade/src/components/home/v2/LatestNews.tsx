@@ -23,17 +23,17 @@ export function LatestNews({ announcements }: Props) {
   };
 
   return (
-    <section className="py-24 bg-white border-t border-gray-100">
+    <section className="py-20 sm:py-24 bg-white border-t border-gray-100">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-4 mb-14">
+        <div className="flex flex-col gap-4 mb-10 sm:mb-14">
           <p className="section-title">NEWS</p>
           <h2 className="section-heading">最新のお知らせ</h2>
-          <p className="text-lg text-slate-600">営業時間やキャンペーン、メディア掲載情報などを随時更新しています。</p>
+          <p className="text-base sm:text-lg text-slate-600">営業時間やキャンペーン、メディア掲載情報などを随時更新しています。</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {announcements.length === 0 ? (
-            <div className="text-center py-16 text-slate-500">
+            <div className="text-center py-12 sm:py-16 text-slate-500">
               <p>現在お知らせはありません</p>
             </div>
           ) : (
@@ -41,13 +41,13 @@ export function LatestNews({ announcements }: Props) {
               <Link
                 key={announcement.id}
                 href={`/news/${announcement.id}`}
-                className="flex items-center gap-6 rounded-2xl border border-gray-100 bg-gray-50 px-6 py-5 hover:border-blue-200 hover:bg-white transition"
+                className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 rounded-2xl border border-gray-100 bg-gray-50 px-5 sm:px-6 py-5 hover:border-blue-200 hover:bg-white transition"
               >
-                <div className="flex items-center gap-4 text-gray-500 min-w-fit">
+                <div className="flex items-center gap-3 text-gray-500 min-w-fit">
                   <Calendar className="w-5 h-5" />
-                  <time className="text-sm font-semibold">{formatDate(announcement.publishedAt)}</time>
+                  <time className="text-xs sm:text-sm font-semibold">{formatDate(announcement.publishedAt)}</time>
                 </div>
-                <h3 className="flex-1 text-slate-900 font-semibold text-lg line-clamp-1">{announcement.title}</h3>
+                <h3 className="flex-1 text-slate-900 font-semibold text-base sm:text-lg line-clamp-2 sm:line-clamp-1">{announcement.title}</h3>
                 <ArrowRight className="w-5 h-5 text-blue-600" />
               </Link>
             ))
@@ -55,7 +55,7 @@ export function LatestNews({ announcements }: Props) {
         </div>
 
         <div className="mt-8 text-right">
-          <Link href="/news" className="text-blue-600 font-semibold">
+          <Link href="/news" className="text-blue-600 font-semibold text-sm sm:text-base">
             すべてのお知らせを見る →
           </Link>
         </div>

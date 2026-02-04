@@ -94,31 +94,31 @@ function AnimatedNumber({
 
 export function TrustSignals() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-20 sm:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <p className="section-title">TRUST</p>
           <h2 className="section-heading">安心と実績で選ばれる理由</h2>
-          <p className="text-lg text-gray-600 mt-4">鑑定士・物流チーム・サポート体制を社内に集約し、高品質な体験を提供しています。</p>
+          <p className="text-base sm:text-lg text-gray-600 mt-4">鑑定士・物流チーム・サポート体制を社内に集約し、高品質な体験を提供しています。</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {STATS.map((stat) => {
             const Icon = stat.icon;
             return (
-              <div key={stat.label} className="rounded-[28px] border border-gray-200 bg-white p-8 text-center">
-                <div className={`${stat.bg} w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6`}>
-                  <Icon className={`w-10 h-10 ${stat.color}`} />
+              <div key={stat.label} className="rounded-[24px] sm:rounded-[28px] border border-gray-200 bg-white p-6 sm:p-8 text-center">
+                <div className={`${stat.bg} w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6`}>
+                  <Icon className={`w-8 h-8 sm:w-10 sm:h-10 ${stat.color}`} />
                 </div>
-                <div className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">
                   <AnimatedNumber
                     value={stat.value}
                     format={stat.format}
                     decimals={stat.decimals}
                   />
-                  <span className="text-2xl">{stat.suffix}</span>
+                  <span className="text-xl sm:text-2xl">{stat.suffix}</span>
                 </div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">{stat.label}</p>
+                <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">{stat.label}</p>
               </div>
             );
           })}
