@@ -1,9 +1,9 @@
-import { HeroSection } from "@/components/home/HeroSection";
-import { CategoryCards } from "@/components/home/CategoryCards";
-import { FeaturesBar } from "@/components/home/FeaturesBar";
-import { FlowPreview } from "@/components/home/FlowPreview";
-import { NewArrivals } from "@/components/home/NewArrivals";
-import { AnnouncementsSection } from "@/components/home/AnnouncementsSection";
+import { HeroSectionV2 } from "@/components/home/v2/HeroSectionV2";
+import { ServiceGrid } from "@/components/home/v2/ServiceGrid";
+import { CategoryShowcase } from "@/components/home/v2/CategoryShowcase";
+import { MarketHighlights } from "@/components/home/v2/MarketHighlights";
+import { TrustSignals } from "@/components/home/v2/TrustSignals";
+import { LatestNews } from "@/components/home/v2/LatestNews";
 import { createClient } from "@/lib/supabase/server";
 
 type DbProduct = {
@@ -39,7 +39,7 @@ export default async function HomePage() {
         .select("id,name,slug,price,rarity,badge,series,category_id")
         .eq("status", "active")
         .order("created_at", { ascending: false })
-        .limit(8),
+        .limit(16),
       supabase
         .from("announcements")
         .select("id,title,published_at")
@@ -64,6 +64,12 @@ export default async function HomePage() {
     categoryLabel: categoryMap.get(product.category_id) ?? "カード",
   })) ?? [];
 
+  const newArrivals = products.slice(0, 8);
+  const trending = products.slice(8, 16).map((product, index) => ({
+    ...product,
+    priceChange: 15 + index * 5,
+  }));
+
   const announcements = (announcementData as DbAnnouncement[] | null)?.map((announcement) => ({
     id: announcement.id,
     title: announcement.title,
@@ -72,12 +78,12 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection />
-      <CategoryCards />
-      <FeaturesBar />
-      <FlowPreview />
-      <NewArrivals products={products} />
-      <AnnouncementsSection announcements={announcements} />
+      <HeroSectionV2 />
+      <ServiceGrid />
+      <CategoryShowcase />
+      <MarketHighlights newArrivals={newArrivals} trending={trending} />
+      <TrustSignals />
+      <LatestNews announcements={announcements} />
     </>
   );
 }
