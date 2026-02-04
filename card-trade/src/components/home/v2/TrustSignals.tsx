@@ -51,6 +51,7 @@ function AnimatedNumber({
 }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,17 +61,15 @@ function AnimatedNumber({
           const duration = 2000;
           const increment = value / (duration / 16);
 
-          const timer = setInterval(() => {
+          timerRef.current = setInterval(() => {
             start += increment;
             if (start >= value) {
               setCount(value);
-              clearInterval(timer);
+              if (timerRef.current) clearInterval(timerRef.current);
             } else {
               setCount(start);
             }
           }, 16);
-
-          return () => clearInterval(timer);
         }
       },
       { threshold: 0.5 }
@@ -80,7 +79,10 @@ function AnimatedNumber({
       observer.observe(ref.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      observer.disconnect();
+    };
   }, [value]);
 
   return (

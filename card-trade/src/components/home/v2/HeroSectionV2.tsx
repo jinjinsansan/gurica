@@ -5,10 +5,10 @@ import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const HERO_IMAGES = [
-  { src: "/hero-cards-1.jpg", alt: "トレーディングカード買取" },
-  { src: "/hero-cards-2.jpg", alt: "デジタルカード査定" },
-  { src: "/hero-cards-3.jpg", alt: "高価買取実施中" },
+const HERO_SLIDES = [
+  { alt: "トレーディングカード買取", gradient: "from-blue-400 to-purple-500" },
+  { alt: "デジタルカード査定", gradient: "from-purple-400 to-pink-500" },
+  { alt: "高価買取実施中", gradient: "from-pink-400 to-orange-500" },
 ];
 
 export function HeroSectionV2() {
@@ -76,13 +76,13 @@ export function HeroSectionV2() {
           <div className="relative">
             <div className="overflow-hidden rounded-2xl shadow-2xl" ref={emblaRef}>
               <div className="flex">
-                {HERO_IMAGES.map((image, index) => (
+                {HERO_SLIDES.map((slide, index) => (
                   <div key={index} className="flex-[0_0_100%] min-w-0">
-                    <div className="relative aspect-[4/3] bg-gradient-to-br from-blue-100 to-purple-100">
+                    <div className={`relative aspect-[4/3] bg-gradient-to-br ${slide.gradient}`}>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center p-8">
                           <div className="w-48 h-64 mx-auto bg-white/20 backdrop-blur-sm rounded-2xl border-2 border-white/40 shadow-xl flex items-center justify-center">
-                            <span className="text-white text-lg font-semibold">{image.alt}</span>
+                            <span className="text-white text-lg font-semibold">{slide.alt}</span>
                           </div>
                         </div>
                       </div>
@@ -110,7 +110,7 @@ export function HeroSectionV2() {
 
             {/* Dots */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {HERO_IMAGES.map((_, index) => (
+              {HERO_SLIDES.map((_, index) => (
                 <button
                   key={index}
                   className={`w-2 h-2 rounded-full transition ${
