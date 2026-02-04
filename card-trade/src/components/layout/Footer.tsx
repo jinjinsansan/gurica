@@ -29,9 +29,6 @@ export function Footer() {
           <p className="text-sm text-white">
             買い取りＫＫ はポケモンカード・遊戯王・ワンピース等に加え、デジタルカードまで幅広く取り扱う公式買取・販売サービスです。
           </p>
-          <p className="text-xs text-white">
-            デジタルカードの取引は古物営業法の対象外です。
-          </p>
         </div>
 
         <FooterColumn title="サービス" links={serviceLinks} />
