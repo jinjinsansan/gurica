@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 
-const companyInfo = [
-  { label: "法人名", value: "{{COMPANY_NAME}}", note: "（確定後に記載）" },
-  { label: "代表者", value: "{{REPRESENTATIVE}}", note: "（確定後に記載）" },
-  { label: "所在地", value: "{{ADDRESS}}", note: "（確定後に記載）" },
-  { label: "電話番号", value: "{{PHONE}}", note: "（確定後に記載）" },
-  { label: "メール", value: "{{EMAIL}}", note: "（確定後に記載）" },
-  { label: "設立", value: "{{FOUNDING_YEAR}}", note: "（確定後に記載）" },
+type InfoRow = {
+  label: string;
+  value: string;
+  note?: string;
+};
+
+const companyInfo: InfoRow[] = [
+  { label: "法人名", value: "合同会社KK企画" },
+  { label: "代表者", value: "笹栗啓太" },
+  { label: "所在地", value: "札幌市豊平区平岸1条6丁目1-25-501" },
+  { label: "電話番号", value: "090-8903-9431（個人携帯）" },
+  { label: "メール", value: "" },
+  { label: "設立", value: "令和元年10月" },
   { label: "事業内容", value: "トレーディングカード・デジタルカードの買取・販売" },
 ];
 
-const licenseInfo = [
+const licenseInfo: InfoRow[] = [
   { label: "許可番号", value: "第{{KOBUTSU_NUMBER}}号", note: "（許可取得後に記載）" },
   { label: "許可公安委員会", value: "{{PUBLIC_SAFETY_COMMISSION}}" },
   { label: "届出区分", value: "法人" },
@@ -18,11 +24,11 @@ const licenseInfo = [
 ];
 
 export const metadata: Metadata = {
-  title: "会社概要 | {{SITE_NAME}}",
-  description: "{{COMPANY_NAME}} の法人情報・古物商許可情報を掲載しています。",
+  title: "会社概要 | 買い取りKK",
+  description: "合同会社KK企画の法人情報・古物商許可情報を掲載しています。",
   openGraph: {
-    title: "会社概要 | {{SITE_NAME}}",
-    description: "{{COMPANY_NAME}} の法人情報・古物商許可情報を掲載しています。",
+    title: "会社概要 | 買い取りKK",
+    description: "合同会社KK企画の法人情報・古物商許可情報を掲載しています。",
   },
 };
 
